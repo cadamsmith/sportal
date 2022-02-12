@@ -1,6 +1,35 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    name: 'DB',
+    options: Platform.isIOS
+        ? const FirebaseOptions(
+            // IOS firebase config
+            apiKey: 'AIzaSyDWwupljLOVixu9dw7we3a0XOP55mVpeM4',
+            appId: '1:741794048826:ios:2dc3e22a3b809e97f0fe03',
+            messagingSenderId: '741794048826',
+            projectId: 'sportal-78981',
+            databaseURL: 'https://sportal-78981-default-rtdb.firebaseio.com',
+            storageBucket: 'sportal-78981.appspot.com',
+          )
+        : const FirebaseOptions(
+            // Android firebase config
+            apiKey: 'AIzaSyBdMztc9Em_U0qnACZHWeQA3WO_jg8KP9A',
+            appId: '1:37100408287:android:a50c4d1422ec5b1b35086a',
+            messagingSenderId: '448618578101',
+            projectId: 'sportal-78981',
+            databaseURL: 'https://sportal-78981-default-rtdb.firebaseio.com',
+            storageBucket: 'sportal-78981.appspot.com',
+          ),
+  );
+
   runApp(const MyApp());
 }
 
