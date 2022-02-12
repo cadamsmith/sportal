@@ -11,7 +11,7 @@ void main() {
     ChangeNotifierProvider(
       create: (context) => AppData(),
       child: MaterialApp(
-        title: 'Flutter Database Example',
+        title: 'Down',
         initialRoute: Welcome.id,
         routes: {
           Welcome.id: (context) => Welcome(),
