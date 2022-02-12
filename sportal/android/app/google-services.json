@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "741794048826",
+    "firebase_url": "https://sportal-78981-default-rtdb.firebaseio.com",
+    "project_id": "sportal-78981",
+    "storage_bucket": "sportal-78981.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741794048826:android:d765a1e64f64c50ff0fe03",
+        "android_client_info": {
+          "package_name": "com.cadamsmith.sportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741794048826-8et8phc5r3icmepbcuq8iuto8vpalu06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDFs40vJFaX5h69nxUB-4TemoDu17SYgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741794048826-8et8phc5r3icmepbcuq8iuto8vpalu06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

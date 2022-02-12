@@ -1,4 +1,4 @@
-package com.example.sportal
+package com.cadamsmith.sportal
 
 import io.flutter.embedding.android.FlutterActivity
 
