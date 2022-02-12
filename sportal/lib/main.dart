@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'data/app_data.dart';
-import 'login_page.dart';
+import 'screens/login.dart';
+import 'screens/welcome.dart';
+import 'screens/register.dart';
 
 void main() {
   runApp(
@@ -10,9 +12,11 @@ void main() {
       create: (context) => AppData(),
       child: MaterialApp(
         title: 'Flutter Database Example',
-        initialRoute: LoginPage.id,
+        initialRoute: Welcome.id,
         routes: {
-          LoginPage.id: (context) => LoginPage()
+          Welcome.id: (context) => Welcome(),
+          Login.id: (context) => Login(),
+          Register.id: (context) => Register(),
         },
       ),
     ),

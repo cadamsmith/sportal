@@ -6,18 +6,18 @@ import 'package:flutter/material.dart';
 // import '../brand_colors.dart';
 // import '../components/progress_dialog.dart';
 // import '../components/taxi_button.dart';
-import 'brand_colors.dart';
-import 'components/taxi-button.dart';
-import 'main.dart';
+import '../brand_colors.dart';
+import '../components/taxi-button.dart';
+import '../main.dart';
 // import 'registration_page.dart';
 
-class LoginPage extends StatelessWidget {
+class Login extends StatelessWidget {
   static const id = 'login';
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  LoginPage({Key? key}) : super(key: key);
+  Login({Key? key}) : super(key: key);
 
   void showSnackBar(BuildContext context, String text) {
     final snackBar = SnackBar(
