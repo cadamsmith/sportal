@@ -1,8 +1,13 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'data/app_data.dart';
+import 'screens/login.dart';
+import 'screens/welcome.dart';
+import 'screens/register.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,11 +35,25 @@ Future<void> main() async {
           ),
   );
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppData(),
+      child: MaterialApp(
+        title: 'Down',
+        initialRoute: Welcome.id,
+        routes: {
+          Welcome.id: (context) => Welcome(),
+          Login.id: (context) => Login(),
+          Register.id: (context) => Register(),
+        },
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+  static const id = 'login_page';
 
   // This widget is the root of your application.
   @override
@@ -80,14 +99,20 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+    // setState(() {
+    //   // This call to setState tells the Flutter framework that something has
+    //   // changed in this State, which causes it to rerun the build method below
+    //   // so that the display can reflect the updated values. If we changed
+    //   // _counter without calling setState(), then the build method would not be
+    //   // called again, and so nothing would appear to happen.
+    //   _counter++;
+    // });
+
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      MyApp.id,
+          (route) => false,
+    );
   }
 
   @override
