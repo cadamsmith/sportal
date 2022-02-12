@@ -1,30 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter App Learning',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: MyHomePage()
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter App Learning',
+//       theme: ThemeData(
+//         primarySwatch: Colors.green,
+//       ),
+//       home: MyHomePage()
+//     );
+//   }
+// }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+// class MyHomePage extends StatefulWidget {
+//   MyHomePage({Key? key}) : super(key: key);
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
 
-class _MyHomePageState extends State<MyHomePage> {
+
+// ignore: camel_case_types, must_be_immutable
+class eventDetails extends StatelessWidget {
+
+  static const id = 'eventDetails';
+
+  eventDetails({Key? key}) : super(key: key);
+
   //TODO: This would have to pull from firebase
  List<String> images = [
    "assets/images/scenary.jpg",
@@ -34,7 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      title: 'Event Details',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: Scaffold(
       appBar: AppBar(
         title: const Text("Basketball 4/12"), //TODO: Pull the title of the event here.
       ),
@@ -54,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(5),
         scrollDirection: Axis.vertical,
       )
-    );
+    )
+    );  
   }
 }

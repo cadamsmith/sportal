@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sportal/screens/createEvent.dart';
+import 'package:sportal/screens/eventDetails.dart';
 
 import 'data/app_data.dart';
 import 'screens/login.dart';
@@ -17,6 +19,8 @@ void main() {
           Welcome.id: (context) => Welcome(),
           Login.id: (context) => Login(),
           Register.id: (context) => Register(),
+          eventDetails.id:(context) => eventDetails(),
+          createEvent.id:(context) => createEvent(),
         },
       ),
     ),
