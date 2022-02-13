@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:sportal/screens/createEvent.dart';
 import 'package:sportal/screens/eventDetails.dart';
@@ -14,7 +15,7 @@ void main() {
       create: (context) => AppData(),
       child: MaterialApp(
         title: 'Down',
-        initialRoute: Welcome.id,
+        initialRoute: createEvent.id,
         routes: {
           Welcome.id: (context) => Welcome(),
           Login.id: (context) => Login(),
