@@ -23,7 +23,7 @@ Future<void> main() async {
           Welcome.id: (context) => Welcome(),
           Login.id: (context) => Login(),
           Register.id: (context) => Register(),
-          eventDetails.id: (context) => eventDetails(),
+          eventDetails.id: (context) => eventDetails(eventID:'75iekgPZgC5mioWg7dYw'),
           createEvent.id: (context) => createEvent(),
         },
       ),
