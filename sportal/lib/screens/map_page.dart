@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sportal/screens/create_event_page.dart';
+
+import 'eventDetails.dart';
 
 class MapPage extends StatefulWidget {
   static const String id = 'map';
@@ -64,6 +67,24 @@ class _MapPageState extends State<MapPage> {
         markers.add(marker);
       });
     });
+  }
+
+  void goToEventDetailsPage(String eventID) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => eventDetails(eventID: eventID),
+      ),
+    );
+  }
+
+  void goToCreateEvent() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CreateEventPage(),
+      ),
+    );
   }
 
   @override
