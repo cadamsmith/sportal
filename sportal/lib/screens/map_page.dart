@@ -30,7 +30,7 @@ class _MapPageState extends State<MapPage> {
   );
 
   //list of markers
-  List<Marker> markers = [];
+  Set<Marker> markers = {};
 
   void setupPositionLocator() async {
     Position position = await Geolocator.getCurrentPosition(
@@ -54,11 +54,12 @@ class _MapPageState extends State<MapPage> {
       // ignore: avoid_function_literals_in_foreach_calls
       querySnapshot.docs.forEach((element) {
         //TODO Create a system to check for questions already asked.
-        
+
         var lat = element.data()["Latitude"];
         var long = element.data()["Longitude"];
-        
-        Marker marker = Marker(markerId: MarkerId(element.id), position: LatLng(lat,long));
+
+        Marker marker =
+            Marker(markerId: MarkerId(element.id), position: LatLng(lat, long));
 
         markers.add(marker);
       });
@@ -92,28 +93,32 @@ class _MapPageState extends State<MapPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: Stack(
         children: [
-          builder: Builder(
-            return GoogleMap(
-      padding: EdgeInsets.only(
-        bottom: mapBottomPadding,
-      ),
-      mapType: MapType.normal,
-      myLocationButtonEnabled: true,
-      myLocationEnabled: true,
-      initialCameraPosition: _kGooglePlex,
-      markers: markers,
-      onMapCreated: (GoogleMapController controller) {
-        _controller.complete(controller);
-        mapController = controller;
+          Builder(
+            builder: (_) {
+              getMarkers();
 
-        setState(() {
-          mapBottomPadding = Platform.isAndroid ? 280 : 270;
-        });
+              return GoogleMap(
+                padding: EdgeInsets.only(
+                  bottom: mapBottomPadding,
+                ),
+                mapType: MapType.normal,
+                myLocationButtonEnabled: true,
+                myLocationEnabled: true,
+                initialCameraPosition: _kGooglePlex,
+                markers: markers,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                  mapController = controller;
 
-        setupPositionLocator();
-      },
-    );
-          )
+                  setState(() {
+                    mapBottomPadding = Platform.isAndroid ? 280 : 270;
+                  });
+
+                  setupPositionLocator();
+                },
+              );
+            },
+          ),
         ],
       ),
     );
