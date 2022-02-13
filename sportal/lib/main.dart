@@ -18,7 +18,7 @@ Future<void> main() async {
       create: (context) => AppData(),
       child: MaterialApp(
         title: 'Down',
-        initialRoute: createEvent.id,
+        initialRoute: eventDetails.id,
         routes: {
           Welcome.id: (context) => Welcome(),
           Login.id: (context) => Login(),

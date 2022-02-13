@@ -25,12 +25,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: camel_case_types, must_be_immutable
 class eventDetails extends StatelessWidget {
   static const id = 'eventDetails';
+  final String eventID;
+  eventDetails({required this.eventID});
 
-  eventDetails({Key? key}) : super(key: key);
-
+  void getEventData
   
-  
-
   //TODO: This would have to pull from firebase
   List<String> images = [
     "assets/images/scenary.jpg",
