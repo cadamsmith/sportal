@@ -78,7 +78,7 @@ class _MapPageState extends State<MapPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => EventDetailsPage(eventID: eventID),
+        builder: (context) => eventDetails(eventID: eventID),
       ),
     );
   }
@@ -87,7 +87,7 @@ class _MapPageState extends State<MapPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const CreateEventPage(),
+        builder: (context) => const createEvent(),
       ),
     );
   }
