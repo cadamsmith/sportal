@@ -50,21 +50,17 @@ class _MapPageState extends State<MapPage> {
 
   void getMarkers() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    await db.collection('Events')events.get().then((querySnapshot) {
+    await db.collection('Events').get().then((querySnapshot) {
       // ignore: avoid_function_literals_in_foreach_calls
       querySnapshot.docs.forEach((element) {
         //TODO Create a system to check for questions already asked.
-
-        var data = element.data();
         
         var lat = element.data()["Latitude"];
+        var long = element.data()["Longitude"];
         
+        Marker marker = Marker(markerId: MarkerId(element.id), position: LatLng(lat,long));
 
-        if (data != null) {
-          Marker marker = Marker(markerId: MarkerId(element.id), position: LatLng(element.data()["Latitude"]?12.3432, element.data()['Longitude']?2.3342))
-
-          markers.add(marker);
-        }
+        markers.add(marker);
       });
     });
   }
