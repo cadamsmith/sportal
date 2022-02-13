@@ -15,7 +15,6 @@ class LoginPage extends StatelessWidget {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
 
   void showSnackBar(BuildContext context, String text) {
     final snackBar = SnackBar(
@@ -140,6 +139,9 @@ class LoginPage extends StatelessWidget {
                             border: OutlineInputBorder(),
                             fillColor: Color.fromRGBO(255, 255, 255, 1),
                           ),
+                          onChanged: (text) {
+                            emailController.text = text;
+                          },
                         ),
                         const SizedBox(
                           height: 32,
@@ -151,6 +153,9 @@ class LoginPage extends StatelessWidget {
                             border: OutlineInputBorder(),
                             fillColor: Color.fromRGBO(255, 255, 255, 1),
                           ),
+                          onChanged: (text) {
+                            passwordController.text = text;
+                          },
                         ),
                         const SizedBox(
                           height: 32,

@@ -47,10 +47,23 @@ class RegisterPage extends StatelessWidget {
       return;
     }
 
-    registerUser(context);
+    registerUser();
   }
 
-  void registerUser(BuildContext context) async {
+  void registerUser() async {
+    print("trying...");
+    print(passwordController.text);
+    print(confirmPasswordController.text);
+    print(emailController.text);
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+    }
+    catch (e) {
+      print(e);
+    }
+  }
+
+  void registerUserq(BuildContext context) async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -102,7 +115,7 @@ class RegisterPage extends StatelessWidget {
                   height: 50,
                 ),
                 const Text(
-                  'Login to your account',
+                  'Create your account',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 24,
@@ -124,6 +137,9 @@ class RegisterPage extends StatelessWidget {
                             border: OutlineInputBorder(),
                             fillColor: Color.fromRGBO(255, 255, 255, 1),
                           ),
+                          onChanged: (text) {
+                            emailController.text = text;
+                          },
                         ),
                         const SizedBox(
                           height: 32,
@@ -135,6 +151,9 @@ class RegisterPage extends StatelessWidget {
                             border: OutlineInputBorder(),
                             fillColor: Color.fromRGBO(255, 255, 255, 1),
                           ),
+                          onChanged: (text) {
+                            passwordController.text = text;
+                          },
                         ),
                         const SizedBox(
                           height: 32,
@@ -146,6 +165,9 @@ class RegisterPage extends StatelessWidget {
                             border: OutlineInputBorder(),
                             fillColor: Color.fromRGBO(255, 255, 255, 1),
                           ),
+                          onChanged: (text) {
+                            confirmPasswordController.text = text;
+                          },
                         ),
                         const SizedBox(
                           height: 32,
@@ -153,10 +175,10 @@ class RegisterPage extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              goToLogin(context);
+
                             }
                           },
-                          child: const Text('Sign up'),
+                          child: const Text('Create Account'),
                           style: ButtonStyle(
                             textStyle: MaterialStateProperty.all(
                               const TextStyle(fontSize: 22),

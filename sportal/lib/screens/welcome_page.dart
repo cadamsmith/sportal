@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../brand_colors.dart';
 import 'login_page.dart';
+import 'register_page.dart';
 
 class WelcomePage extends StatelessWidget {
   static const String id = 'welcome';
@@ -24,6 +25,10 @@ class WelcomePage extends StatelessWidget {
 
   void goToLoginPage(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
+  }
+
+  void goToRegisterPage(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, RegisterPage.id, (route) => false);
   }
 
   @override
@@ -62,7 +67,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        goToLoginPage(context);
+                        goToRegisterPage(context);
                       },
                       child: const Text('Create an Account'),
                       style: ButtonStyle(
