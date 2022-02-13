@@ -8,6 +8,7 @@ import 'data/app_data.dart';
 import 'screens/login.dart';
 import 'screens/welcome.dart';
 import 'screens/register.dart';
+import 'screens/map.dart';
 
 void main() {
   runApp(
@@ -15,13 +16,14 @@ void main() {
       create: (context) => AppData(),
       child: MaterialApp(
         title: 'Down',
-        initialRoute: createEvent.id,
+        initialRoute: Map.id,
         routes: {
           Welcome.id: (context) => Welcome(),
           Login.id: (context) => Login(),
           Register.id: (context) => Register(),
-          eventDetails.id:(context) => eventDetails(),
-          createEvent.id:(context) => createEvent(),
+          eventDetails.id: (context) => eventDetails(),
+          createEvent.id: (context) => createEvent(),
+          Map.id: (context) => Map(),
         },
       ),
     ),
@@ -88,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pushNamedAndRemoveUntil(
       context,
       MyApp.id,
-          (route) => false,
+      (route) => false,
     );
   }
 

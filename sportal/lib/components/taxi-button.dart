@@ -29,7 +29,9 @@ class TaxiButton extends StatelessWidget {
           child: Text(
             text,
             style: const TextStyle(
-                fontSize: 18, fontFamily: 'Brand-Bold'),
+              fontSize: 18,
+              fontFamily: 'Brand-Bold',
+            ),
           ),
         ),
       ),
