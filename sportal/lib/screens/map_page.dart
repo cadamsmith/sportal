@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sportal/brand_colors.dart';
 import 'package:sportal/screens/create_event_page.dart';
 
 import 'eventDetails.dart';
@@ -93,25 +94,17 @@ class _MapPageState extends State<MapPage> {
       drawer: const Drawer(
         child: Text('text'),
       ),
-      floatingActionButton: SizedBox(
-        height: 40,
-        width: 40,
-        child: Builder(
-          builder: (context) {
-            return FloatingActionButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              backgroundColor: Colors.white,
-              child: const Icon(
-                Icons.menu,
-                color: Colors.black87,
-              ),
-            );
-          },
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          goToCreateEvent();
+        },
+        child: const Icon(
+          Icons.add,
+          color: Colors.black87,
         ),
+        backgroundColor: BrandColors.primary,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: Stack(
         children: [
           Builder(
