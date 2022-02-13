@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,11 +28,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //   @override
 //   _MyHomePageState createState() => _MyHomePageState();
 // }
-
-class createEvent extends StatelessWidget {
+class createEvent extends StatefulWidget {
   static const id = 'createEvent';
+  const createEvent({Key? key}) : super(key: key);
 
-  createEvent({Key? key}) : super(key: key);
+  
+  @override
+  _createEvent createState() => _createEvent();
+}
+
+
+class _createEvent extends State<createEvent> {
+
+  var name = 'Pickup Basketball';
+  var numberOfTeams = '2';
+  var numberOfPlayersOnTeam = '6';
+  var eventInfo = 'Field 4';
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +70,9 @@ class createEvent extends StatelessWidget {
                       labelText: 'Event Name',
                       //hintText: "Event Name",
                     ),
+                    onChanged: (text) => setState(() {
+                          name = text;
+                        }),
                   ),
                   //subtitle: Text('Event Name'),
                 ),
@@ -73,6 +89,10 @@ class createEvent extends StatelessWidget {
                         labelText: 'Number of teams'
                         //hintText: "Number of teams:",
                         ),
+                    onChanged: (text) => setState(() {
+                          numberOfTeams = text;
+                        }),
+                    
                   ),
                   //subtitle: Text('Number of teams'),
                 ),
@@ -90,6 +110,9 @@ class createEvent extends StatelessWidget {
                       border: OutlineInputBorder(),
                       labelText: 'Number of players on team',
                     ),
+                    onChanged: (text) => setState(() {
+                          numberOfPlayersOnTeam = text;
+                        }),
                   ),
                   //subtitle: Text('Number of players on team'), //TODO: Maybe change this to Number of players if there is no teams
                 ),
@@ -123,11 +146,22 @@ class createEvent extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed:
-                null, //TODO: Submit data to firebase and navigate to map.
+                submitData,
             tooltip: 'Submit',
             child: const Icon(Icons.add),
           ),
         ));
+  }
+
+  Future<void> submitData() async {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    await db.collection('Events').add(<String, dynamic>{
+      'Name': name,
+      'NumberOfTeams': numberOfTeams,
+      'TeamSize': numberOfPlayersOnTeam,
+      'EventInfo': eventInfo,
+      'Location': 'IM Fields'
+    });
   }
 
   Future<void> onPressed() async {
