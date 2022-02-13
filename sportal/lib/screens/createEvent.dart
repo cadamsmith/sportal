@@ -39,59 +39,78 @@ class createEvent extends StatelessWidget {
         ),
         home: Scaffold(
           appBar: AppBar(
-            title: Text("New Down Event"),
+            title: Text("New Event"),
           ),
           body: ListView(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
               Card(
-                  child: ListTile(
-                leading: Icon(Icons.assignment_outlined),
+                  child: Padding(
+                padding: EdgeInsets.all(13.0),
+                child: ListTile(
+                leading: Icon(Icons.assignment_outlined, size: 34),
                 title: TextField(
                   decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Event Name',
                       //hintText: "Event Name",
                       ),
                 ),
-                subtitle: Text('Event Name'),
+                //subtitle: Text('Event Name'),
+                ),
               )),
               Card(
                   child: Padding(
                 padding: EdgeInsets.all(13.0),
                 child: ListTile(
-                  leading: Icon(Icons.format_list_numbered_outlined),
+                  leading: Icon(Icons.format_list_numbered_outlined, size: 34),
                   title: TextField(
                     //TODO: This needs some way to select 0/1 teams
                     decoration: InputDecoration(
-                      hintText: "Number of teams:",
+                      border: OutlineInputBorder(),
+                      labelText: 'Number of teams'
+                      //hintText: "Number of teams:",
                     ),
                   ),
+                  //subtitle: Text('Number of teams'),
                 ),
               )),
               Card(
-                  child: ListTile(
-                leading: Icon(Icons.people_alt_outlined),
+                  child: Padding(
+                padding: EdgeInsets.all(13.0),
+                child: ListTile(
+                leading: Icon(Icons.people_alt_outlined, size: 34,),
                 title: TextField(
                   decoration: InputDecoration(
-                    hintText:
-                        "Number of players on team:", //TODO: Maybe change this to Number of players if there is no teams
+                    border: OutlineInputBorder(),
+                    labelText: 'Number of players on team',
                   ),
+                ),
+                //subtitle: Text('Number of players on team'), //TODO: Maybe change this to Number of players if there is no teams
                 ),
               )),
               Card(
-                  child: ListTile(
-                leading: Icon(Icons.map_outlined),
+                  child: Padding(
+                padding: EdgeInsets.all(13.0),
+                child: ListTile(
+                leading: Icon(Icons.map_outlined, size: 34),
                 title: const Text('Event Location'),
                 trailing: IconButton(
                     onPressed: onPressed,
                     icon: Icon(Icons.location_on_outlined)),
+                ),
               )),
               Card(
-                  child: ListTile(
-                leading: Icon(Icons.view_headline_outlined),
+                  child: Padding(
+                padding: EdgeInsets.all(13.0),
+                child: ListTile(
+                leading: Icon(Icons.view_headline_outlined, size: 34),
                 title: TextField(
                   decoration: InputDecoration(
-                    hintText: "Event Details",
+                    border: OutlineInputBorder(),
+                    hintText: "Write details about event...",
                   ),
+                ),
                 ),
               )),
             ],
