@@ -64,9 +64,10 @@ class RegisterPage extends StatelessWidget {
                           TextFormField(
                             obscureText: true,
                             decoration: const InputDecoration(
-                                labelText: 'Password',
-                                border: OutlineInputBorder(),
-                                fillColor: Color.fromRGBO(255, 255, 255, 1)),
+                              labelText: 'Password',
+                              border: OutlineInputBorder(),
+                              fillColor: Color.fromRGBO(255, 255, 255, 1),
+                            ),
                             validator: (String? value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your password.';

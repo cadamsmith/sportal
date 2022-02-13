@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:sportal/screens/create_event_page.dart';
-import 'package:sportal/screens/event_details_page.dart';
 
 import 'data/app_data.dart';
 import 'screens/login_page.dart';
 import 'screens/welcome_page.dart';
 import 'screens/register_page.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'screens/create_event_page.dart';
+import 'screens/map_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +23,7 @@ Future<void> main() async {
           LoginPage.id: (context) => LoginPage(),
           RegisterPage.id: (context) => RegisterPage(),
           CreateEventPage.id: (context) => CreateEventPage(),
+          MapPage.id: (context) => MapPage(),
         },
       ),
     ),

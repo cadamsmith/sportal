@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../brand_colors.dart';
 import 'login_page.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -33,39 +34,61 @@ class WelcomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 200,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: const [
-                      Text(
-                        'Down',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontFamily: 'Brand-Bold',
-                        ),
-                      ),
-                    ],
+            child: Center(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 200,
                   ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    goToLoginPage(context);
-                  },
-                  child: const Text('Create an Account'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    goToLoginPage(context);
-                  },
-                  child: const Text('Sign In.'),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: const [
+                        Text(
+                          'Down',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontFamily: 'Brand-Bold',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints.tightFor(
+                      width: 200,
+                      height: 50,
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        goToLoginPage(context);
+                      },
+                      child: const Text('Create an Account'),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(BrandColors.primary),
+                      ),
+                    ),
+                  ),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints.tightFor(
+                      width: 200,
+                      height: 50,
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        goToLoginPage(context);
+                      },
+                      child: const Text('Sign In.'),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            BrandColors.secondaryLight),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

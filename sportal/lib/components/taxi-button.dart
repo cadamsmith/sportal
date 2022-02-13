@@ -11,7 +11,7 @@ class TaxiButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onPressed,
-    this.color = BrandColors.colorGreen,
+    this.color = BrandColors.primary,
   }) : super(key: key);
 
   @override
@@ -28,8 +28,7 @@ class TaxiButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
-                fontSize: 18, fontFamily: 'Brand-Bold'),
+            style: const TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
           ),
         ),
       ),
