@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../components/progress_dialog.dart';
 import 'welcome.dart';
@@ -24,7 +25,16 @@ class Welcome extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  void testConnection() {
+    DatabaseReference ref =
+        FirebaseDatabase.instance.ref().child('isConnected');
+
+    ref.set('true');
+  }
+
   void goToLoginPage(BuildContext context) {
+    testConnection();
+
     Navigator.pushNamedAndRemoveUntil(context, Login.id, (route) => false);
   }
 
@@ -48,9 +58,7 @@ class Welcome extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Column(
-
-                  ),
+                  child: Column(),
                 ),
                 TextButton(
                   onPressed: () {
