@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import '../components/progress_dialog.dart';
-import 'welcome.dart';
-import '../components/taxi-button.dart';
-import 'login.dart';
-import '../brand_colors.dart';
 
-class Welcome extends StatelessWidget {
+import 'login_page.dart';
+
+class WelcomePage extends StatelessWidget {
   static const String id = 'welcome';
 
-  Welcome({Key? key}) : super(key: key);
+  const WelcomePage({Key? key}) : super(key: key);
 
   void showSnackBar(BuildContext context, String title) {
     final snackBar = SnackBar(
@@ -25,7 +22,7 @@ class Welcome extends StatelessWidget {
   }
 
   void goToLoginPage(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(context, Login.id, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
   }
 
   @override
@@ -35,21 +32,25 @@ class Welcome extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8),
             child: Column(
               children: [
                 const SizedBox(
-                  height: 70,
-                ),
-                const Text(
-                  'Down',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 40, fontFamily: 'Brand-Bold'),
+                  height: 200,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20),
                   child: Column(
-
+                    children: const [
+                      Text(
+                        'Down',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontFamily: 'Brand-Bold',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 TextButton(

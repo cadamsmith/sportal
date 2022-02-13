@@ -1,33 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter App Learning',
-//       theme: ThemeData(
-//         primarySwatch: Colors.green,
-//       ),
-//       home: MyHomePage()
-//     );
-//   }
-// }
-
-// class MyHomePage extends StatefulWidget {
-//   MyHomePage({Key? key}) : super(key: key);
-//   @override
-//   _MyHomePageState createState() => _MyHomePageState();
-// }
-
-// ignore: camel_case_types, must_be_immutable
-class eventDetails extends StatelessWidget {
+class EventDetailsPage extends StatelessWidget {
   static const id = 'eventDetails';
   final String eventID;
   //CollectionReference data = FirebaseFirestore.instance.collection('Events');
-  eventDetails({required this.eventID});
+  EventDetailsPage({Key? key, required this.eventID}) : super(key: key);
 
   //TODO: This would have to pull from firebase
   List<String> images = [

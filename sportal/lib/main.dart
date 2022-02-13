@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:sportal/screens/createEvent.dart';
-import 'package:sportal/screens/eventDetails.dart';
+import 'package:sportal/screens/create_event_page.dart';
+import 'package:sportal/screens/event_details_page.dart';
 
 import 'data/app_data.dart';
-import 'screens/login.dart';
-import 'screens/welcome.dart';
-import 'screens/register.dart';
+import 'screens/login_page.dart';
+import 'screens/welcome_page.dart';
+import 'screens/register_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
@@ -18,13 +18,12 @@ Future<void> main() async {
       create: (context) => AppData(),
       child: MaterialApp(
         title: 'Down',
-        initialRoute: eventDetails.id,
+        home: WelcomePage(),
         routes: {
-          Welcome.id: (context) => Welcome(),
-          Login.id: (context) => Login(),
-          Register.id: (context) => Register(),
-          eventDetails.id: (context) => eventDetails(),
-          createEvent.id: (context) => createEvent(),
+          WelcomePage.id: (context) => WelcomePage(),
+          LoginPage.id: (context) => LoginPage(),
+          RegisterPage.id: (context) => RegisterPage(),
+          CreateEventPage.id: (context) => CreateEventPage(),
         },
       ),
     ),
