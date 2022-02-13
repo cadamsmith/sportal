@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Map extends StatefulWidget {
   static const String id = 'map';
@@ -30,6 +31,9 @@ class _MapState extends State<Map> {
 
   //list of markers
   Set<Marker> markers = {};
+
+  final Stream<QuerySnapshot> eventsStream =
+      FirebaseFirestore.instance.collection('events').snapshots();
 
   void setupPositionLocator() async {
     Position position = await Geolocator.getCurrentPosition(
@@ -74,24 +78,43 @@ class _MapState extends State<Map> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: Stack(
         children: [
-          GoogleMap(
-            padding: EdgeInsets.only(
-              bottom: mapBottomPadding,
-            ),
-            mapType: MapType.normal,
-            myLocationButtonEnabled: true,
-            myLocationEnabled: true,
-            initialCameraPosition: _kGooglePlex,
-            markers: markers,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-              mapController = controller;
+          StreamBuilder(
+            stream: FirebaseFirestore.instance.collection('Events').snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasData) {
+                final latLng = LatLng(
+                  snapshot.data!.docs.first.get('latitude'),
+                  snapshot.data!.docs.first.get('longitude'),
+                );
 
-              setState(() {
-                mapBottomPadding = Platform.isAndroid ? 280 : 270;
-              });
+                markers.add(
+                  Marker(
+                    markerId: const MarkerId('location'),
+                    position: latLng,
+                  ),
+                );
+              }
 
-              setupPositionLocator();
+              return GoogleMap(
+                padding: EdgeInsets.only(
+                  bottom: mapBottomPadding,
+                ),
+                mapType: MapType.normal,
+                myLocationButtonEnabled: true,
+                myLocationEnabled: true,
+                initialCameraPosition: _kGooglePlex,
+                markers: markers,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                  mapController = controller;
+
+                  setState(() {
+                    mapBottomPadding = Platform.isAndroid ? 280 : 270;
+                  });
+
+                  setupPositionLocator();
+                },
+              );
             },
           ),
         ],
