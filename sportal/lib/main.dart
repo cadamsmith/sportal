@@ -17,13 +17,13 @@ Future<void> main() async {
       create: (context) => AppData(),
       child: MaterialApp(
         title: 'Down',
-        home: WelcomePage(),
+        home: const MapPage(),
         routes: {
           WelcomePage.id: (context) => WelcomePage(),
           LoginPage.id: (context) => LoginPage(),
           RegisterPage.id: (context) => RegisterPage(),
           CreateEventPage.id: (context) => CreateEventPage(),
-          MapPage.id: (context) => MapPage(),
+          MapPage.id: (context) => const MapPage(),
         },
       ),
     ),
