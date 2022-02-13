@@ -68,7 +68,8 @@ class Welcome extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    goToLoginPage(context);
+                    DatabaseReference dbref = FirebaseDatabase.instance.ref().child('KeyTest');
+                    dbref.set('IsConnected');
                   },
                   child: const Text('Sign In.'),
                 ),

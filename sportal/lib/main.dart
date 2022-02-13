@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pushNamedAndRemoveUntil(
       context,
       MyApp.id,
-          (route) => false,
+      (route) => false,
     );
   }
 
