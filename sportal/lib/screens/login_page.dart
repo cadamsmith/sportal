@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../components/progress_dialog.dart';
+import 'map_page.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,9 +13,85 @@ class LoginPage extends StatelessWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  void showSnackBar(BuildContext context, String text) {
+    final snackBar = SnackBar(
+      content: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 15,
+        ),
+      ),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   void goToRegister(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(
         context, RegisterPage.id, (route) => false);
+  }
+
+  void onLoginPressed(BuildContext context) async {
+    if (!emailController.text.contains('@')) {
+      showSnackBar(context, 'Please provide a valid email address.');
+      return;
+    } else if (passwordController.text.length < 8) {
+      showSnackBar(context, 'Please provide a valid password.');
+      return;
+    }
+
+    loginUser(context);
+  }
+
+  void loginUser(context) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const ProgressDialog(status: 'Logging you in');
+      },
+    );
+
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      var userID = userCredential.user!.uid;
+
+      DocumentReference userRef =
+          FirebaseFirestore.instance.collection('users').doc(userID);
+
+      userRef.get().then((DocumentSnapshot snapshot) {
+        if (!snapshot.exists) {
+          throw Exception('Something went wrong!');
+        }
+
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          MapPage.id,
+          (route) => false,
+        );
+      });
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+
+      if (e.code == 'user-not-found') {
+        showSnackBar(context, 'No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        showSnackBar(context, 'Wrong password provided for that user.');
+      }
+    } catch (e) {
+      Navigator.pop(context);
+
+      showSnackBar(context, 'An unexpected error occurred. Try again');
+    }
   }
 
   @override
@@ -21,23 +101,23 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(32.0),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 0,
-                    horizontal: 20,
+                    horizontal: 30,
                   ),
                   child: Image.asset('images/logo_white_bg.png'),
                 ),
                 const SizedBox(
-                  height: 70,
+                  height: 40,
                 ),
                 const Text(
                   'Login to your account',
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: 'Brand-Bold',
@@ -60,12 +140,6 @@ class LoginPage extends StatelessWidget {
                             border: OutlineInputBorder(),
                             fillColor: Color.fromRGBO(255, 255, 255, 1),
                           ),
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your email.';
-                            }
-                            return null;
-                          },
                         ),
                         const SizedBox(
                           height: 32,
@@ -77,21 +151,13 @@ class LoginPage extends StatelessWidget {
                             border: OutlineInputBorder(),
                             fillColor: Color.fromRGBO(255, 255, 255, 1),
                           ),
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your password.';
-                            }
-                            return null;
-                          },
                         ),
                         const SizedBox(
                           height: 32,
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              goToRegister(context);
-                            }
+                            onLoginPressed(context);
                           },
                           child: const Text('Sign in'),
                           style: ButtonStyle(
