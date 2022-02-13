@@ -24,6 +24,12 @@
       <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/firebase_auth/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/firebase_auth/example/build" />
       <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/firebase_auth/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/cloud_firestore/build" />
+      <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/cloud_firestore/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/cloud_firestore/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/cloud_firestore/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/cloud_firestore/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/sportal/ios/.symlinks/plugins/cloud_firestore/example/.pub" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
