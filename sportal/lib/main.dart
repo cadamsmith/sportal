@@ -8,8 +8,11 @@ import 'data/app_data.dart';
 import 'screens/login.dart';
 import 'screens/welcome.dart';
 import 'screens/register.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     ChangeNotifierProvider(
       create: (context) => AppData(),
@@ -20,8 +23,8 @@ void main() {
           Welcome.id: (context) => Welcome(),
           Login.id: (context) => Login(),
           Register.id: (context) => Register(),
-          eventDetails.id:(context) => eventDetails(),
-          createEvent.id:(context) => createEvent(),
+          eventDetails.id: (context) => eventDetails(),
+          createEvent.id: (context) => createEvent(),
         },
       ),
     ),
@@ -88,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pushNamedAndRemoveUntil(
       context,
       MyApp.id,
-          (route) => false,
+      (route) => false,
     );
   }
 
