@@ -12,7 +12,7 @@ void main() {
       create: (context) => AppData(),
       child: MaterialApp(
         title: 'Down',
-        initialRoute: Welcome.id,
+        initialRoute: Login.id,
         routes: {
           Welcome.id: (context) => Welcome(),
           Login.id: (context) => Login(),

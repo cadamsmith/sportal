@@ -39,17 +39,19 @@ class Welcome extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 70,
+                  height: 200,
                 ),
-                const Text(
-                  'Down',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 40, fontFamily: 'Brand-Bold'),
-                ),
+
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
-
+                    children: [
+                      const Text(
+                        'Down',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 40, fontFamily: 'Brand-Bold'),
+                      )
+                    ]
                   ),
                 ),
                 TextButton(
