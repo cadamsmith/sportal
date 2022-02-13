@@ -119,14 +119,17 @@ class _MapPageState extends State<MapPage> {
                 myLocationButtonEnabled: true,
                 myLocationEnabled: true,
                 initialCameraPosition: _kGooglePlex,
-                markers: markers,
+                markers: {
+                  Marker(
+                      markerId: MarkerId('75iekgPZgC5mioWg7dYw'),
+                      position: LatLng(32.609856, -85.480782)),
+                  Marker(
+                      markerId: MarkerId('bpgPDlgQson0KESgJhPs'),
+                      position: LatLng(32.6060, -85.4881)),
+                },
                 onMapCreated: (GoogleMapController controller) {
                   _controller.complete(controller);
                   mapController = controller;
-
-                  setState(() {
-                    mapBottomPadding = Platform.isAndroid ? 280 : 270;
-                  });
 
                   setupPositionLocator();
                 },
