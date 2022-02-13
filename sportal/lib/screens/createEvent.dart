@@ -2,6 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -48,15 +50,15 @@ class createEvent extends StatelessWidget {
                   child: Padding(
                 padding: EdgeInsets.all(13.0),
                 child: ListTile(
-                leading: Icon(Icons.assignment_outlined, size: 34),
-                title: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Event Name',
+                  leading: Icon(Icons.assignment_outlined, size: 34),
+                  title: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Event Name',
                       //hintText: "Event Name",
-                      ),
-                ),
-                //subtitle: Text('Event Name'),
+                    ),
+                  ),
+                  //subtitle: Text('Event Name'),
                 ),
               )),
               Card(
@@ -67,10 +69,10 @@ class createEvent extends StatelessWidget {
                   title: TextField(
                     //TODO: This needs some way to select 0/1 teams
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Number of teams'
-                      //hintText: "Number of teams:",
-                    ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Number of teams'
+                        //hintText: "Number of teams:",
+                        ),
                   ),
                   //subtitle: Text('Number of teams'),
                 ),
@@ -79,38 +81,41 @@ class createEvent extends StatelessWidget {
                   child: Padding(
                 padding: EdgeInsets.all(13.0),
                 child: ListTile(
-                leading: Icon(Icons.people_alt_outlined, size: 34,),
-                title: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Number of players on team',
+                  leading: Icon(
+                    Icons.people_alt_outlined,
+                    size: 34,
                   ),
-                ),
-                //subtitle: Text('Number of players on team'), //TODO: Maybe change this to Number of players if there is no teams
+                  title: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Number of players on team',
+                    ),
+                  ),
+                  //subtitle: Text('Number of players on team'), //TODO: Maybe change this to Number of players if there is no teams
                 ),
               )),
               Card(
                   child: Padding(
                 padding: EdgeInsets.all(13.0),
                 child: ListTile(
-                leading: Icon(Icons.map_outlined, size: 34),
-                title: const Text('Event Location'),
-                trailing: IconButton(
-                    onPressed: onPressed,
-                    icon: Icon(Icons.location_on_outlined)),
+                  leading: Icon(Icons.map_outlined, size: 34),
+                  title: const Text('Event Location'),
+                  trailing: IconButton(
+                      onPressed: onPressed,
+                      icon: Icon(Icons.location_on_outlined)),
                 ),
               )),
               Card(
                   child: Padding(
                 padding: EdgeInsets.all(13.0),
                 child: ListTile(
-                leading: Icon(Icons.view_headline_outlined, size: 34),
-                title: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Write details about event...",
+                  leading: Icon(Icons.view_headline_outlined, size: 34),
+                  title: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Write details about event...",
+                    ),
                   ),
-                ),
                 ),
               )),
             ],
@@ -125,7 +130,17 @@ class createEvent extends StatelessWidget {
         ));
   }
 
-  void onPressed() {
-    //TODO: Navigate to map to select location.
+  Future<void> onPressed() async {
+    var questionList = [];
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    await db.collection('Events').get().then((querySnapshot) {
+      // ignore: avoid_function_literals_in_foreach_calls
+      querySnapshot.docs.forEach((element) {
+        //TODO Create a system to check for questions already asked.
+        questionList.add(element.data()["Name"]);
+      });
+    });
+    print(questionList);
   }
+  //TODO: Navigate to map to select location.
 }
