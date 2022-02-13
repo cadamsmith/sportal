@@ -76,7 +76,7 @@ class eventDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     getRoster();
-
+    
     int counter = 0;
     return MaterialApp(
         title: 'Event Details',

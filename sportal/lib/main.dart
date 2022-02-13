@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:sportal/screens/event_details_page.dart';
 
 import 'data/app_data.dart';
 import 'screens/login_page.dart';
@@ -24,6 +25,7 @@ Future<void> main() async {
           RegisterPage.id: (context) => RegisterPage(),
           CreateEventPage.id: (context) => CreateEventPage(),
           MapPage.id: (context) => const MapPage(),
+          eventDetails.id: (context) => eventDetails(eventID:'75iekgPZgC5mioWg7dYw'),
         },
       ),
     ),
