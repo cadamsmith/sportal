@@ -26,10 +26,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class eventDetails extends StatelessWidget {
   static const id = 'eventDetails';
   final String eventID;
+  //CollectionReference data = FirebaseFirestore.instance.collection('Events');
   eventDetails({required this.eventID});
 
-  void getEventData
-  
   //TODO: This would have to pull from firebase
   List<String> images = [
     "assets/images/scenary.jpg",
