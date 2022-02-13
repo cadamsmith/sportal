@@ -21,6 +21,10 @@ class RegisterPage extends StatelessWidget {
     Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
   }
 
+  void goToMap(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, MapPage.id, (route) => false);
+  }
+
   void showSnackBar(BuildContext context, String title) {
     final snackBar = SnackBar(
       content: Text(
@@ -47,10 +51,10 @@ class RegisterPage extends StatelessWidget {
       return;
     }
 
-    registerUser();
+    registerUser(context);
   }
 
-  void registerUser() async {
+  void registerUserq() async {
     print("trying...");
     print(passwordController.text);
     print(confirmPasswordController.text);
@@ -63,24 +67,21 @@ class RegisterPage extends StatelessWidget {
     }
   }
 
-  void registerUserq(BuildContext context) async {
+  void registerUser(context) async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return const ProgressDialog(status: 'Registering you...');
       },
     );
-
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-
       Navigator.pushNamedAndRemoveUntil(context, MapPage.id, (route) => false);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
-
       if (e.code == 'weak-password') {
         showSnackBar(context, 'The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
@@ -174,9 +175,7 @@ class RegisterPage extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-
-                            }
+                            onRegisterPressed(context);
                           },
                           child: const Text('Create Account'),
                           style: ButtonStyle(

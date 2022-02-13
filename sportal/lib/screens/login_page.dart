@@ -61,26 +61,16 @@ class LoginPage extends StatelessWidget {
         email: emailController.text,
         password: passwordController.text,
       );
-
       var userID = userCredential.user!.uid;
-
       DocumentReference userRef =
           FirebaseFirestore.instance.collection('users').doc(userID);
-
-      userRef.get().then((DocumentSnapshot snapshot) {
-        if (!snapshot.exists) {
-          throw Exception('Something went wrong!');
-        }
-
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          MapPage.id,
-          (route) => false,
-        );
-      });
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        MapPage.id,
+            (route) => false,
+      );
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
-
       if (e.code == 'user-not-found') {
         showSnackBar(context, 'No user found for that email.');
       } else if (e.code == 'wrong-password') {
@@ -88,7 +78,6 @@ class LoginPage extends StatelessWidget {
       }
     } catch (e) {
       Navigator.pop(context);
-
       showSnackBar(context, 'An unexpected error occurred. Try again');
     }
   }
